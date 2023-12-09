@@ -8,6 +8,10 @@ let shlok;
 let adhyay;
 
 async function start(){
+    let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    let disp = document.querySelector('.display');
+    disp.style.borderColor = randomColor;
+    disp.style.boxShadow = `0 0 10rem ${randomColor}80`;
     try{
         let response = await fetch(url+15+'/'+15+'/');
         let data = await response.json();
