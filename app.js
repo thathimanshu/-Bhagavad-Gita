@@ -35,6 +35,10 @@ button.addEventListener("click",async ()=>{
             
             document.querySelector('.sanskrit').textContent = data.slok;
             document.querySelector('.english').textContent = data.siva.et;
+            let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            let disp = document.querySelector('.display');
+            disp.style.borderColor = randomColor;
+            disp.style.boxShadow = `0 0 10rem ${randomColor}80`;
         }
 
         else{

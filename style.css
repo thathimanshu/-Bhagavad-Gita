@@ -45,6 +45,8 @@ input:focus,button:hover {
     border-radius: 2rem;
     padding: 2rem 2rem;
     color: honeydew;
+    border: 0.3rem solid #007bff; 
+    box-shadow:0 0 10rem rgba(0, 123, 255, 0.5); 
 }
 p {
     white-space: pre-line;
