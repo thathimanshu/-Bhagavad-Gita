@@ -29,7 +29,6 @@ button.addEventListener("click",async ()=>{
         while(numVerses[adhyay]<shlok && ad_empty){
             adhyay = Math.floor(Math.random() * 18) + 1;
         }
-        console.log((url+adhyay+'/'+shlok+'/'));
         if(adhyay<=18 && adhyay>=0 && shlok<=numVerses[adhyay] && shlok>0){
             let response = await fetch(url+adhyay+'/'+shlok+'/');
             let data = await response.json();
