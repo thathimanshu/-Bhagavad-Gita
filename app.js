@@ -7,9 +7,9 @@ let numVerses = [0,47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 34, 27, 20, 2
 let shlok;
 let adhyay;
 
-async function open(){
+async function start(){
     try{
-        let response = await fetch(url+1+'/'+1+'/');
+        let response = await fetch(url+15+'/'+15+'/');
         let data = await response.json();
         
         document.querySelector('.sanskrit').textContent = data.slok;
@@ -19,7 +19,7 @@ async function open(){
         alert(err);
     }
 }
-open();
+start();
 button.addEventListener("click",async ()=>{
     try{
         let ad_empty = false;
