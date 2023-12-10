@@ -9,11 +9,11 @@ body{
     width: 70vw ;
 }
 
-.inputs{
-    display: flex   ;
-    justify-content: space-evenly;
+.inputs,.buttons{
+    display: flex;
+    justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 12vh;
 }
 input,button{
     background-color:#272727;
@@ -25,9 +25,11 @@ input,button{
     border-radius: 5px;
     font-size: 16px;
     outline: none;
+    margin :0 10px;
 }
 button{
     height: 3.5rem;
+    width: 9.5rem;
 }
 input:focus,button:hover {
     border-color: #007bff; 
@@ -58,5 +60,8 @@ p {
         height: auto;
         padding: 1rem 1rem;
     }
-    
+    input{
+        width: 7rem;
+    }
+
 }

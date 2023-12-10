@@ -1,17 +1,20 @@
 let inputs = document.querySelectorAll('.in');
 let url = 'https://bhagavadgitaapi.in/slok/'
-let button = document.querySelector('.get');
-
+let button = document.querySelector('#get');
+let nextButton = document.querySelector('#next');
 let numVerses = [0,47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 34, 27, 20, 24, 28, 78];
 
-let shlok;
-let adhyay;
+let shlok = 15;
+let adhyay = 15;
 
-async function start(){
+async function changeColorRandom(){
     let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
     let disp = document.querySelector('.display');
     disp.style.borderColor = randomColor;
     disp.style.boxShadow = `0 0 10rem ${randomColor}80`;
+}
+async function start(){
+    changeColorRandom();
     try{
         let response = await fetch(url+15+'/'+15+'/');
         let data = await response.json();
@@ -38,16 +41,45 @@ button.addEventListener("click",async ()=>{
             let data = await response.json();
             
             document.querySelector('.sanskrit').textContent = data.slok;
-            document.querySelector('.english').textContent = data.siva.et;
-            let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-            let disp = document.querySelector('.display');
-            disp.style.borderColor = randomColor;
-            disp.style.boxShadow = `0 0 10rem ${randomColor}80`;
+            let eng = data.siva.et;
+            if(!eng.includes('did not comment')){
+                document.querySelector('.english').textContent = data.siva.et;
+            }
+            else{
+                document.querySelector('.english').textContent = "";
+            }
+            changeColorRandom();
         }
 
         else{
             alert("Bad input value");
         }
+    }
+    catch(err){
+        alert(err);
+    }
+});
+
+nextButton.addEventListener("click",async ()=>{
+    shlok++;
+    if(numVerses[adhyay]<shlok){
+        adhyay++;
+        shlok = 1;
+    }
+
+    try{
+        let response = await fetch(url+adhyay+'/'+shlok+'/');
+        let data = await response.json();
+        
+        document.querySelector('.sanskrit').textContent = data.slok;
+        let eng = data.siva.et;
+        if(!eng.includes('did not comment')){
+            document.querySelector('.english').textContent = data.siva.et;
+        }
+        else{
+            document.querySelector('.english').textContent = "";
+        }
+        changeColorRandom();
     }
     catch(err){
         alert(err);
