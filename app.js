@@ -13,20 +13,38 @@ async function changeColorRandom(){
     disp.style.borderColor = randomColor;
     disp.style.boxShadow = `0 0 10rem ${randomColor}80`;
 }
+async function getDataFromApi(){
+    try{
+        let response = await fetch(url+adhyay+'/'+shlok+'/');
+        let data = await response.json();
+        return data;
+    }
+    catch(err){
+        alert(err);
+    }
+}
+function assignDataToP(data){
+    document.querySelector('.sanskrit').textContent = data.slok;
+    let eng = data.siva.et;
+    if(!eng.includes('did not comment')){
+        document.querySelector('.english').textContent = data.siva.et;
+    }
+    else{
+        document.querySelector('.english').textContent = "";
+    }
+}
 async function start(){
     changeColorRandom();
     try{
-        let response = await fetch(url+15+'/'+15+'/');
-        let data = await response.json();
-        
-        document.querySelector('.sanskrit').textContent = data.slok;
-        document.querySelector('.english').textContent = data.siva.et;
+        let data = await getDataFromApi();
+        assignDataToP(data);
     }
     catch(err){
         alert(err);
     }
 }
 start();
+
 button.addEventListener("click",async ()=>{
     try{
         let ad_empty = false;
@@ -37,17 +55,9 @@ button.addEventListener("click",async ()=>{
             adhyay = Math.floor(Math.random() * 18) + 1;
         }
         if(adhyay<=18 && adhyay>=0 && shlok<=numVerses[adhyay] && shlok>0){
-            let response = await fetch(url+adhyay+'/'+shlok+'/');
-            let data = await response.json();
+            let data = await getDataFromApi();
             
-            document.querySelector('.sanskrit').textContent = data.slok;
-            let eng = data.siva.et;
-            if(!eng.includes('did not comment')){
-                document.querySelector('.english').textContent = data.siva.et;
-            }
-            else{
-                document.querySelector('.english').textContent = "";
-            }
+            assignDataToP(data);
             changeColorRandom();
         }
 
@@ -68,17 +78,8 @@ nextButton.addEventListener("click",async ()=>{
     }
 
     try{
-        let response = await fetch(url+adhyay+'/'+shlok+'/');
-        let data = await response.json();
-        
-        document.querySelector('.sanskrit').textContent = data.slok;
-        let eng = data.siva.et;
-        if(!eng.includes('did not comment')){
-            document.querySelector('.english').textContent = data.siva.et;
-        }
-        else{
-            document.querySelector('.english').textContent = "";
-        }
+        let data = await getDataFromApi();
+        assignDataToP(data);
         changeColorRandom();
     }
     catch(err){
