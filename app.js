@@ -2,6 +2,7 @@ let inputs = document.querySelectorAll('.in');
 let url = 'https://bhagavadgitaapi.in/slok/'
 let button = document.querySelector('#get');
 let nextButton = document.querySelector('#next');
+let prevButton = document.querySelector('#prev');
 let numVerses = [0,47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 34, 27, 20, 24, 28, 78];
 
 let shlok = 15;
@@ -78,6 +79,26 @@ nextButton.addEventListener("click",async ()=>{
     if(adhyay==19){
         adhyay = 1;
         shlok = 1;
+    }
+
+    try{
+        let data = await getDataFromApi();
+        assignDataToP(data);
+        changeColorRandom();
+    }
+    catch(err){
+        alert(err);
+    }
+});
+prevButton.addEventListener("click",async ()=>{
+    shlok--;
+    if(shlok==0){
+        adhyay--;
+        shlok = numVerses[adhyay];
+    }
+    if(adhyay==0){
+        adhyay = 18;
+        shlok = 78;
     }
 
     try{
