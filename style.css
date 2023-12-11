@@ -88,5 +88,20 @@ p {
     input{
         width: 7rem;
     }
+    .inputs{
+        margin-left: 1rem;
+    }
 
 }
+@media only screen and (max-height: 450px) {
+    .display,.inputs{
+        width: auto;
+        height: auto;
+        padding: 1rem 1rem;
+        margin: 1rem 1rem;
+    }
+    input{
+        width: 7rem;
+    }
+}
+
