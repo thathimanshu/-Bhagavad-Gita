@@ -54,13 +54,12 @@ button.addEventListener("click",async ()=>{
         while(numVerses[adhyay]<shlok && ad_empty){
             adhyay = Math.floor(Math.random() * 18) + 1;
         }
+        
         if(adhyay<=18 && adhyay>=0 && shlok<=numVerses[adhyay] && shlok>0){
             let data = await getDataFromApi();
-            
             assignDataToP(data);
             changeColorRandom();
         }
-
         else{
             alert("Bad input value");
         }
@@ -74,6 +73,10 @@ nextButton.addEventListener("click",async ()=>{
     shlok++;
     if(numVerses[adhyay]<shlok){
         adhyay++;
+        shlok = 1;
+    }
+    if(adhyay==19){
+        adhyay = 1;
         shlok = 1;
     }
 
