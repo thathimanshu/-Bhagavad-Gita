@@ -50,7 +50,7 @@ button.addEventListener("click",async ()=>{
     try{
         let ad_empty = false;
         adhyay = inputs[0].value ? inputs[0].value : Math.floor(Math.random() * 18), ad_empty = true + 1;
-        shlok = inputs[1].value ? inputs[1].value : Math.floor(Math.random() * numVerses[adhyay]) + 1;
+        shlok = inputs[1].value ? inputs[1].value : 1;
         
         while(numVerses[adhyay]<shlok && ad_empty){
             adhyay = Math.floor(Math.random() * 18) + 1;

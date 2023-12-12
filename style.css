@@ -105,3 +105,10 @@ p {
     }
 }
 
+.version-text {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem;
+    color: #c8c8c82e; 
+}
