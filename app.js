@@ -34,9 +34,14 @@ function assignDataToP(data){
         document.querySelector('.english').textContent = "";
     }
 }
+function assignDataToSingleP(data){
+    document.querySelector('.sanskrit').textContent = data.slok;
+    document.querySelector('.english').textContent = "";
+}
 async function start(){
     changeColorRandom();
     try{
+
         let data = await getDataFromApi();
         assignDataToP(data);
     }
@@ -69,7 +74,18 @@ button.addEventListener("click",async ()=>{
         alert(err);
     }
 });
-
+button.addEventListener("dblclick",async ()=>{
+    try{
+        adhyay = inputs[0].value;
+        shlok = inputs[1].value;
+        let data = await getDataFromApi();
+        assignDataToSingleP(data);
+        changeColorRandom();
+    }
+    catch(err){
+        alert(err);
+    }
+});
 nextButton.addEventListener("click",async ()=>{
     shlok++;
     if(numVerses[adhyay]<shlok){
