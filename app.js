@@ -34,10 +34,7 @@ function assignDataToP(data){
         document.querySelector('.english').textContent = "";
     }
 }
-function assignDataToSingleP(data){
-    document.querySelector('.sanskrit').textContent = data.slok;
-    document.querySelector('.english').textContent = "";
-}
+
 async function start(){
     changeColorRandom();
     try{
@@ -50,8 +47,7 @@ async function start(){
     }
 }
 start();
-
-button.addEventListener("click",async ()=>{
+let clickfn = async ()=>{
     try{
         let ad_empty = false;
         adhyay = inputs[0].value ? inputs[0].value : Math.floor(Math.random() * 18), ad_empty = true + 1;
@@ -73,18 +69,11 @@ button.addEventListener("click",async ()=>{
     catch(err){
         alert(err);
     }
-});
+}
+button.addEventListener("click",clickfn);
 button.addEventListener("dblclick",async ()=>{
-    try{
-        adhyay = inputs[0].value;
-        shlok = inputs[1].value;
-        let data = await getDataFromApi();
-        assignDataToSingleP(data);
-        changeColorRandom();
-    }
-    catch(err){
-        alert(err);
-    }
+    await clickfn();
+    document.querySelector('.english').textContent = "";
 });
 nextButton.addEventListener("click",async ()=>{
     shlok++;
